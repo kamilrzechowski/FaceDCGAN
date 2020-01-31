@@ -6,7 +6,7 @@
     <ProjectGuid>e0e40a23-fef1-4d4f-9f00-864f64537537</ProjectGuid>
     <ProjectHome>.</ProjectHome>
     <ProjectTypeGuids>{8B0147FC-7A0C-481F-99C4-C90CCB52692E};{888888A0-9F3D-457C-B088-3A5042F75D52}</ProjectTypeGuids>
-    <StartupFile>FaceGAN.py</StartupFile>
+    <StartupFile>train.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -27,11 +27,17 @@
     <Compile Include="config.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="dataset.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="discriminator.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="FaceGAN.py" />
     <Compile Include="generator.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="train.py">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
