@@ -5,26 +5,26 @@ I would like tt thank the tensorflow team. Their sample code was very halpeful i
  
 ## Instalation  
 Prerequirements GPU tensorflow (computer with NVIDIA gpu):  
-'''
-# create virtual enviromannt and install tensorflow
+```
+#create virtual enviromannt and install tensorflow
 conda create -n tf-gpu tensorflow-gpu
 conda activate tf-gpu
-'''
+```
 Prerequirements for CPU-only tensorflow:  
-'''  
+```
 conda create -n tf tensorflow = 2.0
 conda activate tf
-'''
+```
   
 Other libraried:  
-'''
-# Install matplotlib
+```
+#Install matplotlib
 conda install -c conda-forge matplotlib
-# Install tqdm
+#Install tqdm
 conda install -c conda-forge tqdm
-# Install pillow
+#Install pillow
 conda install -c anaconda pillow
-'''
+```
 
 ## Dataset  
 The dataset used in the project is CelebA dataset of 200,000 images. The image size shuold be (64,64,3). If you want to use different image sizes, you will need to change network inputs to fit your requirements. The CelebA can be download from the webiste here: http://mmlab.ie.cuhk.edu.hk/projects/CelebA.html. The dataset should be unzip to the /img folder inside the project.
