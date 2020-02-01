@@ -6,17 +6,18 @@ I would like tt thank the tensorflow team. Their sample code was very halpeful i
 ## Instalation  
 Prerequirements GPU tensorflow (computer with NVIDIA gpu):  
 ```
-#create virtual enviromannt and install tensorflow
+#create virtual enviromannt and install tensorflow gpu only
 conda create -n tf-gpu tensorflow-gpu
 conda activate tf-gpu
 ```
 Prerequirements for CPU-only tensorflow:  
 ```
+#create virtual enviromannt and install tensorflow cpu only
 conda create -n tf tensorflow = 2.0
 conda activate tf
 ```
   
-Other libraried:  
+Other library:  
 ```
 #Install matplotlib
 conda install -c conda-forge matplotlib
