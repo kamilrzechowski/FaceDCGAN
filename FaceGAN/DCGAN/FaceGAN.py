@@ -5,11 +5,12 @@ import datetime
 import random
 from glob import glob
 from tqdm import tqdm
+import os
 
-from discriminator import Discriminator
-from generator import Generator
-from dataset import LoadBatch
-import config as cfg
+from .discriminator import Discriminator
+from .generator import Generator
+from .dataset import LoadBatch
+from . import config as cfg
 
 __all__ = ['FaceGAN']
 
@@ -37,7 +38,7 @@ class FaceGAN():
         return self.cross_entropy(tf.ones_like(fake_output), fake_output)    #we would like to foul the discriminator -> 1
 
     def _get_no_batches(self):
-        return len(glob(cfg.img_dir))//cfg.BATCH_SIZE
+        return len(glob(os.path.join(os.getcwd(), cfg.img_dir)))//cfg.BATCH_SIZE
 
 
     # Notice the use of `tf.function`
@@ -86,8 +87,8 @@ class FaceGAN():
             # Save the model every 15 epochs
             if (epoch + 1) % 2 == 0:
                 #checkpoint.save(file_prefix = checkpoint_prefix)
-                self.generator_module.save_weights(cfg.ckpt_generator + str(epoch))
-                self.discriminator_module.save_weights(cfg.ckpt_discriminator + str(epoch))
+                self.generator_module.save_weights(os.path.join(os.getcwd(), cfg.ckpt_generator) + str(epoch))
+                self.discriminator_module.save_weights(os.path.join(os.getcwd(), cfg.ckpt_discriminator) + str(epoch))
 
             print ('Time for epoch {} is {} sec'.format(epoch + 1, time.time()-start))
 

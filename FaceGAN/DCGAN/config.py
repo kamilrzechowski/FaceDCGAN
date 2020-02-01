@@ -2,10 +2,10 @@
 # paths parameter
 #
 
-img_dir = 'C:/Kamil_VisulaStudio/FaceDCGAN/FaceGAN/img/*'
-img_save_path = 'C:/VisualStudio/FaceDCGAN/FaceGAN2/predictions/'
-ckpt_generator = 'C:/Kamil_VisulaStudio/FaceDCGAN/FaceGAN/ckpt_generator/'
-ckpt_discriminator = 'C:/Kamil_VisulaStudio/FaceDCGAN/FaceGAN/ckpt_discriminator/'
+img_dir = 'img/*'
+img_save_path = 'predictions/'
+ckpt_generator = 'ckpt_generator/checkpoint'
+ckpt_discriminator = 'ckpt_discriminator/checkpoint'
 
 
 EPOCHS = 20

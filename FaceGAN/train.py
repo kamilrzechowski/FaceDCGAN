@@ -1,9 +1,11 @@
+from __future__ import absolute_import
+
 from PIL import Image
 import matplotlib.pyplot as plt
-from .FaceGAN import FaceGAN
+from DCGAN.FaceGAN import FaceGAN
+from DCGAN import config as cfg
 
 import numpy as np
-import config as cfg
 from PIL import Image
 from glob import glob
 import os
@@ -21,7 +23,7 @@ def generate_and_save_images(model, epoch, test_input):
         plt.imshow(predictions[i, :, :, 0] * 127.5 + 127.5, cmap='gray')
         plt.axis('off')
 
-    plt.savefig(os.path.join(cfg.img_save_path, 'image_at_epoch_{:04d}.png'.format(epoch)))
+    plt.savefig(os.path.join(os.path.join(os.getcwd(), cfg.img_save_path), 'image_at_epoch_{:04d}.png'.format(epoch)))
     plt.show()
 
 def main():

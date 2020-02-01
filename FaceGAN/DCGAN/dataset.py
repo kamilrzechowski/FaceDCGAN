@@ -1,6 +1,6 @@
 
 import numpy as np
-import config as cfg
+from . import config as cfg
 from PIL import Image
 from glob import glob
 import os
@@ -11,7 +11,7 @@ __all__ = ['LoadBatch']
 class LoadBatch():
 
     def __init__(self):
-        self.image_ids = glob(cfg.img_dir)
+        self.image_ids = glob(os.path.join(os.getcwd(), cfg.img_dir))
 
     def __getitem__(self, batch_no: int, batch=cfg.BATCH_SIZE):
         #shuffle the dataset if we start the epoch

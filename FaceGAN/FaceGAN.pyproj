@@ -24,22 +24,28 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="config.py">
+    <Compile Include="DCGAN\config.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="dataset.py">
+    <Compile Include="DCGAN\dataset.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="discriminator.py">
+    <Compile Include="DCGAN\discriminator.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="FaceGAN.py" />
-    <Compile Include="generator.py">
+    <Compile Include="DCGAN\FaceGAN.py" />
+    <Compile Include="DCGAN\generator.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DCGAN\__init__.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="train.py">
       <SubType>Code</SubType>
     </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="DCGAN\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in
