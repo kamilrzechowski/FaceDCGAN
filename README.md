@@ -25,7 +25,10 @@ conda install -c conda-forge matplotlib
 conda install -c conda-forge tqdm
 #Install pillow
 conda install -c anaconda pillow
-```
+```  
+  
+## Project structure  
+scription TODO  
 
 ## Dataset  
 The dataset used in the project is CelebA dataset of 200,000 images. The image size shuold be (64,64,3). If you want to use different image sizes, you will need to change network inputs to fit your requirements. The CelebA can be download from the webiste here: http://mmlab.ie.cuhk.edu.hk/projects/CelebA.html. The dataset should be unzip to the /img folder inside the project.  
