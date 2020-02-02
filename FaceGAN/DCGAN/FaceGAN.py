@@ -44,7 +44,7 @@ class FaceGAN():
     # Notice the use of `tf.function`
     # This annotation causes the function to be "compiled".
     @tf.function
-    def train_step(self,images):
+    def train_step(self,images, epoch: int,iteration: int):
         noise = tf.random.normal([cfg.BATCH_SIZE, cfg.noise_shape[0]])
 
         with tf.GradientTape() as gen_tape, tf.GradientTape() as disc_tape:
@@ -55,6 +55,7 @@ class FaceGAN():
 
             gen_loss = self._generator_loss(fake_output)
             disc_loss = self._discriminator_loss(real_output, fake_output)
+            tf.print("\n\r Epoch " + str(epoch) + ", iteration " + str(iteration) + "| Gen loss=", gen_loss, ", Disc loss=", disc_loss)
 
         gradients_of_generator = gen_tape.gradient(gen_loss, self.generator_module.trainable_variables)
         gradients_of_discriminator = disc_tape.gradient(disc_loss, self.discriminator_module.trainable_variables)
@@ -82,7 +83,7 @@ class FaceGAN():
 
             for i in tqdm(range(no_batch)):
                 batch = self.batchLoader[i]
-                self.train_step(batch)
+                self.train_step(batch, epoch, i)
 
             # Save the model every 15 epochs
             if (epoch + 1) % 2 == 0:

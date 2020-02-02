@@ -40,6 +40,9 @@
     <Compile Include="DCGAN\__init__.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="evaluate.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="train.py">
       <SubType>Code</SubType>
     </Compile>
