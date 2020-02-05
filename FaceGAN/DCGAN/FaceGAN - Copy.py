@@ -17,10 +17,8 @@ __all__ = ['FaceGAN']
 class FaceGAN():
 
     def __init__(self):
-        self.generator = Generator()
-        self.discriminator = Discriminator()
-        self.generator_module = self.generator.make_generator_model(cfg.noise_shape)
-        self.discriminator_module = self.discriminator.make_deicriminator_model(cfg.image_shape)
+        self.generator_module = Generator.make_generator_model(cfg.noise_shape)
+        self.discriminator_module = Discriminator.make_deicriminator_model(cfg.image_shape)
 
         # This method returns a helper function to compute cross entropy loss
         self.cross_entropy = tf.keras.losses.BinaryCrossentropy(from_logits=True)
@@ -46,7 +44,7 @@ class FaceGAN():
     # Notice the use of `tf.function`
     # This annotation causes the function to be "compiled".
     @tf.function
-    def train_step(self,images):
+    def train_step(self,images):    #, epoch: int,iteration: int
         noise = tf.random.normal([cfg.BATCH_SIZE, cfg.noise_shape[0]])
 
         with tf.GradientTape() as gen_tape, tf.GradientTape() as disc_tape:
@@ -57,28 +55,13 @@ class FaceGAN():
 
             gen_loss = self._generator_loss(fake_output)
             disc_loss = self._discriminator_loss(real_output, fake_output)
-            tf.print("\n\r Gen loss=", gen_loss, ", Disc loss=", disc_loss)
+            #tf.print("\n\r Epoch " + str(epoch) + ", iteration " + str(iteration) + "| Gen loss=", gen_loss, ", Disc loss=", disc_loss)
 
         gradients_of_generator = gen_tape.gradient(gen_loss, self.generator_module.trainable_variables)
         gradients_of_discriminator = disc_tape.gradient(disc_loss, self.discriminator_module.trainable_variables)
 
         self.generator_optimizer.apply_gradients(zip(gradients_of_generator, self.generator_module.trainable_variables))
         self.discriminator_optimizer.apply_gradients(zip(gradients_of_discriminator, self.discriminator_module.trainable_variables))
-
-    def generate_and_save_images(model, epoch, test_input):
-    # Notice `training` is set to False.
-    # This is so all layers run in inference mode (batchnorm).
-        predictions = model(test_input, training=False)
-
-        fig = plt.figure(figsize=(4,4))
-
-        for i in range(predictions.shape[0]):
-            plt.subplot(4, 4, i+1)
-            plt.imshow(predictions[i, :, :, 0] * 127.5 + 127.5, cmap='gray')
-            plt.axis('off')
-
-        plt.savefig(os.path.join(os.path.join(os.getcwd(), cfg.img_save_path), 'image_at_epoch_{:04d}.png'.format(epoch)))
-        #plt.show()
 
     def train(self, checkpoint_path_gen = None, checkpoint_path_disc = None):
 
@@ -98,8 +81,10 @@ class FaceGAN():
         for epoch in range(cfg.EPOCHS):
             start = time.time()
 
-            for i in range(no_batch):
-                self.train_step(self.batchLoader(i))
+            for i in tqdm(range(no_batch)):
+                #batch = self.batchLoader[i]
+                batch = self.batchLoader.getitem(i)
+                self.train_step(batch)
 
             # Save the model every 15 epochs
             if (epoch + 1) % 2 == 0:
@@ -107,13 +92,9 @@ class FaceGAN():
                 self.generator_module.save_weights(os.path.join(os.getcwd(), cfg.ckpt_generator) + str(epoch))
                 self.discriminator_module.save_weights(os.path.join(os.getcwd(), cfg.ckpt_discriminator) + str(epoch))
 
-            # Produce images for the GIF as we go
-            display.clear_output(wait=True)
-            self.generate_and_save_images(self.generator_module, epoch + 1, seed)
-
             print ('Time for epoch {} is {} sec'.format(epoch + 1, time.time()-start))
 
-        #Generate after the final epoch
+        # Generate after the final epoch
         #display.clear_output(wait=True)
         #generate_and_save_images(self.generator_module, epochs, seed)
 
