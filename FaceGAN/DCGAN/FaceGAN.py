@@ -64,7 +64,9 @@ class FaceGAN():
 
             gen_loss = self._generator_loss(fake_output)
             disc_loss = self._discriminator_loss(real_output, fake_output)
-            tf.print("Gen loss=", gen_loss, ", Disc loss=", disc_loss)
+            #tf.print("Gen loss=", gen_loss, ", Disc loss=", disc_loss)
+            tf.print("Gen loss=", gen_loss, ", Disc loss=", disc_loss, 
+                     output_stream = os.path.join('file://',cfg.log_file))
 
         gradients_of_generator = gen_tape.gradient(gen_loss, self.generator_module.trainable_variables)
         gradients_of_discriminator = disc_tape.gradient(disc_loss, self.discriminator_module.trainable_variables)
@@ -105,10 +107,9 @@ class FaceGAN():
         for epoch in range(cfg.EPOCHS):
             start = time.time()
 
-            for i in range(no_batch):
+            for i in tqdm(range(no_batch)):
                 for minibatch in self.batchLoader[i]:
                     self.train_step(minibatch)
-                print("Epoch " + str(epoch) + ", " + str(i) + "/" + str(no_batch))
 
             # Save the model every 15 epochs
             if (epoch + 1) % 2 == 0:
@@ -121,6 +122,7 @@ class FaceGAN():
             self.generate_and_save_images(self.generator_module, epoch + 1, seed)
 
             print ('Time for epoch {} is {} sec'.format(epoch + 1, time.time()-start))
+            tf.print("Epoch=", epoch, ", time=", time.time()-start,output_stream = os.path.join('file://',cfg.log_file))
 
         #Generate after the final epoch
         #display.clear_output(wait=True)

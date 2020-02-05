@@ -1,0 +1,19 @@
+Gen loss= 0.700738 , Disc loss= 1.38888454
+Gen loss= 0.636687756 , Disc loss= 1.39144349
+Gen loss= 0.592539907 , Disc loss= 1.37916231
+Gen loss= 0.591260195 , Disc loss= 1.34706712
+Gen loss= 0.610536456 , Disc loss= 1.26083779
+Gen loss= 0.660270512 , Disc loss= 1.2067405
+Gen loss= 0.737208605 , Disc loss= 1.0739336
+Gen loss= 0.707471073 , Disc loss= 1.38834846
+Gen loss= 0.660714447 , Disc loss= 1.37501061
+Gen loss= 0.634444654 , Disc loss= 1.3493793
+Gen loss= 0.651039481 , Disc loss= 1.31065333
+Gen loss= 0.68476516 , Disc loss= 1.18435502
+Gen loss= 0.716244757 , Disc loss= 1.16239214
+Epoch= 0 , time= 26.948519945144653
+Gen loss= 0.758504272 , Disc loss= 1.05632329
+Gen loss= 0.781586826 , Disc loss= 1.02138853
+Gen loss= 0.765381455 , Disc loss= 0.997259915
+Gen loss= 0.746924639 , Disc loss= 1.0227598
+Gen loss= 0.753258109 , Disc loss= 0.898236752
