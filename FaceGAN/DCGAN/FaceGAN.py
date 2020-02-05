@@ -47,7 +47,7 @@ class FaceGAN():
         return self.cross_entropy(tf.ones_like(fake_output), fake_output)    #we would like to foul the discriminator -> 1
 
     def _get_no_batches(self):
-        return len(glob(os.path.join(os.getcwd(), cfg.img_dir2)))//cfg.BATCH_SIZE
+        return len(glob(cfg.img_dir2))//cfg.BATCH_SIZE
 
 
     # Notice the use of `tf.function`

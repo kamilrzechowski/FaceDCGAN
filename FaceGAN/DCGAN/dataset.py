@@ -13,7 +13,7 @@ __all__ = ['LoadBatch']
 class LoadBatch():
 
     def __init__(self):
-        self.image_ids = glob(os.path.join(os.getcwd(), cfg.img_dir2))
+        self.image_ids = glob(cfg.img_dir2)
 
     def __getitem__(self, batch_no: int, batch=cfg.BATCH_SIZE):
         #shuffle the dataset if we start the epoch
