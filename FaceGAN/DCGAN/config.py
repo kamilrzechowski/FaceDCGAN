@@ -13,3 +13,4 @@ EPOCHS = 20
 BATCH_SIZE = 64
 noise_shape = (512,)
 image_shape = (64,64,3)
+num_examples_to_generate = 16

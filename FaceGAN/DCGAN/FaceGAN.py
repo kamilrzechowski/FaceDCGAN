@@ -1,4 +1,6 @@
-﻿import time
+﻿from __future__ import absolute_import, division
+
+import time
 import tensorflow as tf
 import numpy as np
 import datetime
@@ -75,7 +77,7 @@ class FaceGAN():
     # This is so all layers run in inference mode (batchnorm).
         predictions = model(test_input, training=False)
 
-        fig = plt.figure(figsize=(4,4))
+        #fig = plt.figure(figsize=(4,4))
 
         for i in range(predictions.shape[0]):
             plt.subplot(4, 4, i+1)
@@ -90,7 +92,7 @@ class FaceGAN():
         # We will reuse this seed overtime (so it's easier)
         # to visualize progress in the animated GIF)
         # num_examples_to_generate = batch
-        seed = tf.random.normal([cfg.BATCH_SIZE, cfg.noise_shape[0]]) #[batch_size, noise_dim]
+        seed = tf.random.normal([cfg.num_examples_to_generate, cfg.noise_shape[0]]) #[batch_size, noise_dim]
 
         no_batch = self._get_no_batches()
 
@@ -106,6 +108,7 @@ class FaceGAN():
             for i in range(no_batch):
                 for minibatch in self.batchLoader[i]:
                     self.train_step(minibatch)
+                print("Epoch " + str(epoch) + ", " + str(i) + "/" + str(no_batch))
 
             # Save the model every 15 epochs
             if (epoch + 1) % 2 == 0:
