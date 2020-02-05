@@ -3,10 +3,12 @@ import tensorflow as tf
 import numpy as np
 import datetime
 import random
+import matplotlib.pyplot as plt
 from glob import glob
 from tqdm import tqdm
 import os
 import imageio
+import PIL
 
 from IPython import display
 
