@@ -70,7 +70,7 @@ class FaceGAN():
         self.generator_optimizer.apply_gradients(zip(gradients_of_generator, self.generator_module.trainable_variables))
         self.discriminator_optimizer.apply_gradients(zip(gradients_of_discriminator, self.discriminator_module.trainable_variables))
 
-    def generate_and_save_images(model, epoch, test_input):
+    def generate_and_save_images(self, model, epoch, test_input):
     # Notice `training` is set to False.
     # This is so all layers run in inference mode (batchnorm).
         predictions = model(test_input, training=False)
