@@ -1,6 +1,5 @@
 import tensorflow as tf
-from tensorflow.keras.layers import Dense, BatchNormalization, Conv2DTranspose, Conv2D, Input, Reshape, LeakyReLU, Activation
-from tensorflow.keras import Model
+from tensorflow.keras import layers
 
 __all__ = ['Generator']
 EPSILON = 0.00005

@@ -6,6 +6,9 @@ import random
 from glob import glob
 from tqdm import tqdm
 import os
+import imageio
+
+from IPython import display
 
 from .discriminator import Discriminator
 from .generator import Generator
@@ -57,7 +60,7 @@ class FaceGAN():
 
             gen_loss = self._generator_loss(fake_output)
             disc_loss = self._discriminator_loss(real_output, fake_output)
-            tf.print("\n\r Gen loss=", gen_loss, ", Disc loss=", disc_loss)
+            tf.print("Gen loss=", gen_loss, ", Disc loss=", disc_loss)
 
         gradients_of_generator = gen_tape.gradient(gen_loss, self.generator_module.trainable_variables)
         gradients_of_discriminator = disc_tape.gradient(disc_loss, self.discriminator_module.trainable_variables)
@@ -99,7 +102,8 @@ class FaceGAN():
             start = time.time()
 
             for i in range(no_batch):
-                self.train_step(self.batchLoader(i))
+                for minibatch in self.batchLoader[i]:
+                    self.train_step(minibatch)
 
             # Save the model every 15 epochs
             if (epoch + 1) % 2 == 0:

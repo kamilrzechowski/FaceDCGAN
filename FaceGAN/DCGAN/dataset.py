@@ -26,7 +26,7 @@ class LoadBatch():
         images = images.reshape(images.shape[0], 64, 64, 3).astype('float32')
         images = (images - 127.5) / 127.5 # Normalize the images to [-1, 1]
         # Batch and shuffle the data
-        images = tf.data.Dataset.from_tensor_slices(images) #.shuffle(cfg.BUFFER_SIZE).batch(cfg.BATCH_SIZE)
+        images = tf.data.Dataset.from_tensor_slices(images).batch(len(images)) #.shuffle(cfg.BUFFER_SIZE).batch(cfg.BATCH_SIZE)
 
     
         return images #tf.convert_to_tensor(np.array(images), np.float32)

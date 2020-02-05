@@ -3,7 +3,7 @@
 #
 
 img_dir = 'img/*'
-img_dir2 = 'C:/Kamil_VisulaStudio/FaceDCGAN/FaceGAN/img'
+img_dir2 = 'C:/Kamil_VisulaStudio/FaceDCGAN/FaceGAN/img/*'
 img_save_path = 'predictions/'
 ckpt_generator = 'ckpt_generator/checkpoint'
 ckpt_discriminator = 'ckpt_discriminator/checkpoint'
